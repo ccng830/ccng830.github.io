@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cc</title>
+    <description>邊緣科技小組</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 20 Oct 2019 16:56:11 +0800</pubDate>
+    <lastBuildDate>Sun, 20 Oct 2019 16:56:11 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>CocoaMqtt 使用教學 1</title>
+        <description>&lt;h2 id=&quot;安裝cocoapod&quot;&gt;安裝CocoaPod&lt;/h2&gt;
+
+&lt;p&gt;我們首先要安裝CocoaPod，然後利用CocoaPod下載CocoaMQTT。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;終端機 terminal 中輸入&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;sudo gem install cocoapods
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/terminal.png&quot; width=&quot;65%&quot; /&gt;
+等待數分鐘後安裝完畢。&lt;/p&gt;
+
+&lt;h2 id=&quot;安裝cocoamqtt&quot;&gt;安裝CocoaMQTT&lt;/h2&gt;
+
+&lt;p&gt;打開Xcode，開一個新的專案，本次例子中取名為CocoaPod_test，並存於documents中。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;新增專案時，User Interface點選Storyboard&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/storyboard.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;建好後將它關掉，可利用快捷鍵 Command + Q關掉。回到終端機 terminal，使用cd(change directory) 指令以導航至新的 Xcode 專案。以本例子為例，本例子存於documents中，因此：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;cd ~/documents/CocoaPod_test/
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然後，我們需要在專案的根目錄下新增一個 Podfile 文件，被安裝的 pods 都會寫入至 Podfile 以作紀錄及追踪更新。日後當你呼叫 CocoaPods 去安裝或更新現存的 pods，CocoaPods 便會前往 Podfile 搜找指令。
+要建立 Podfile 是相當簡單，輸入以下指令：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;pod init
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;運行完我們可以看到專案資料夾中，多了一個Podfile&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/podfile.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;打開Podfile輸入，在use_framework!下一行加入&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;pod 'CocoaMQTT'
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/pod_cocoamqtt.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;儲存並關閉，在terminal中&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;pod install
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/pod_install.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安裝完畢後，打開專案的資料夾，會發現多了一個CocoaPod_test.xcworkspace 的檔案，雙擊打開&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/xcws.png&quot; width=&quot;100%&quot; /&gt;
+&lt;img src=&quot;/img/cocoamqtt/xcws2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;點選ViewControllor.swift，現在在專案中可以使用CocoaMQTT module了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;import CocoaMQTT
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cocoamqtt/cocoamqtt.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;練習&quot;&gt;練習&lt;/h2&gt;
+
+</description>
+        <pubDate>Sun, 20 Oct 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/10/20/CocoaMqtt/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/10/20/CocoaMqtt/</guid>
+        
+        <category>swift</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

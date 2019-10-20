@@ -1,0 +1,7 @@
+1. cd C:\Users\acer\Desktop\hon20002000\hon20002000.github.io
+2. jekyll server
+3. git add .
+4. git commit -m "xxx"
+5. git push -u origin master
+
+6*. git pull

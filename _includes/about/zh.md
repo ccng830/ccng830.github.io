@@ -1,2 +1,4 @@
-> 正在更新中.   
+> IG: lonertechnologygroup
+
+https://www.instagram.com/lonertechnologygroup/?hl=zh-tw
 

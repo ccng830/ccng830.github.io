@@ -14,9 +14,79 @@ tags:
 >簡單在App中建立一個button以作subscribe topic之用<br/>
 >同時建立一個Label以顯示所接收的內容
 
-## CocoaMQTT
+## CocoaMQTT 
 
-完整代碼
+首先在storyboard中，拉出一個Button及Label。
+
+<img src="/img/cocoamqtt3/step1.png" width="100%">
+
+如下圖所示，點選Assistant
+
+<img src="/img/cocoamqtt3/step2.png" width="100%">
+
+點選Label/button，按著control不放，拖動箭頭到右側界面
+
+<img src="/img/cocoamqtt3/step3.png" width="100%">
+
+>分別拖出Label及button的outlet，分別命名為label1及button1<br/>
+>同時拖出button1的action，命名為Click
+
+<img src="/img/cocoamqtt3/step4.png" width="100%">
+
+我們要接收從 MQTTBroker 傳來的資料，首先要建立 CocoaMQTT 的物件實體，並且設定屬性：
+
+    var mqtt: CocoaMQTT?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupMQTT()
+    }
+    
+    func setupMQTT(){
+        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+        mqtt = CocoaMQTT(clientID: clientID, host: "broker.mqttdashboard.com", port: 1883)
+        mqtt?.autoReconnect = true
+        mqtt?.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
+        mqtt?.keepAlive = 60
+        mqtt?.delegate = self as? CocoaMQTTDelegate
+        if let mqttStatus = mqtt?.connect(){
+            print(mqttStatus)
+        }
+        
+        mqtt?.didReceiveMessage = { mqtt, message, id in
+            print("Message received in topic \(message.topic) with payload \(message.string!)")
+            print(self.topic)
+            self.label1.text = message.string!
+        }
+    }
+
+>當中上面host設定為broker.mqttdashboard.com，與前面MQTTBox教學所使用的broker相同。<br/>
+>mqtt?.didReceiveMessage是收到傳來的信息後所執行的動作，我令它所收到的信息顯示在label1的text中
+
+接下來我們定義一個topic，並且按下button後subscribe該topic，
+
+    let topic = "light_sensor_level1"
+    var subscribeBool = false
+    
+    @IBAction func Click(_ sender: UIButton) {
+        if !subscribeBool{
+            subscribeBool = true
+            mqtt?.subscribe(topic)
+        }
+        else{
+            subscribeBool = false
+            mqtt?.unsubscribe(topic)
+        }
+        mqtt?.didSubscribeTopic = { mqtt , topic in
+            self.button1.setTitle("Cancel", for: .normal)
+        }
+        mqtt?.didUnsubscribeTopic = { mqtt , topic in
+            self.button1.setTitle("Subscribe", for: .normal)
+            self.label1.text = "tap Subscribe"
+        }
+    }
+
+到這裡已經大致完成，以下是完整代碼
 
     class ViewController: UIViewController {
 
@@ -35,12 +105,10 @@ tags:
             if !subscribeBool{
                 subscribeBool = true
                 mqtt?.subscribe(topic)
-                mqtt?.subscribe(topic2)
             }
             else{
                 subscribeBool = false
                 mqtt?.unsubscribe(topic)
-                mqtt?.unsubscribe(topic2)
             }
             mqtt?.didSubscribeTopic = { mqtt , topic in
                 self.button1.setTitle("Cancel", for: .normal)
@@ -55,7 +123,7 @@ tags:
             let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
             mqtt = CocoaMQTT(clientID: clientID, host: "broker.mqttdashboard.com", port: 1883)
             mqtt?.autoReconnect = true
-            mqtt?.willMessage = CocoaMQTTWill(topic: "abc", message: "dieout")
+            mqtt?.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
             mqtt?.keepAlive = 60
             mqtt?.delegate = self as? CocoaMQTTDelegate
             if let mqttStatus = mqtt?.connect(){
@@ -68,6 +136,14 @@ tags:
                 self.label1.text = message.string!
             }
         }
+    }
+
+接下來按下command+R，在模擬器上進行測試，並且在MQTTBox上Public一些信息作測試。
+
+<img src="/img/cocoamqtt3/step6.png" width="100%">
+<img src="/img/cocoamqtt3/step8.png" width="100%">
+<img src="/img/cocoamqtt3/step7.png" width="100%">
+
 
 
 

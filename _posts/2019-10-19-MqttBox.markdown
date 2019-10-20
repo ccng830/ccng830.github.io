@@ -29,9 +29,9 @@ MQTT 即是採用 Publish／Subscribe 模式，其中 Publisher 和 Subscriber �
 下載好後打開MQTTBox，並如下圖進行設定，
 <img src="/img/cocoamqtt2/mqttboxsetting.png" width="100%">
 
->MQTT Client Name 隨意
->Protocol 選為mqtt/tcp
->Host 輸入 broker.mqtt-dashboard.com
+>MQTT Client Name 隨意<br />
+>Protocol 選為mqtt/tcp<br />
+>Host 輸入 broker.mqtt-dashboard.com<br />
 
 儲存後進入下列界面，左邊藍框的是Publisher，右邊橙框的是Subscriber，兩者的Topic都設為: light_sensor_level1，按下Subscriber側的subscribe。
 

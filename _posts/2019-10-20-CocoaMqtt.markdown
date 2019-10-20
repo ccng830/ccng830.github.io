@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "CocoaMqtt 使用教學 1"
+title:      "CocoaMqtt 安裝教學"
 date:       2019-10-20
 author:     "cc"
 header-img: "img/tag-bg.jpg"

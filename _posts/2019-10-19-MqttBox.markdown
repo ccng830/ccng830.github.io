@@ -1,0 +1,53 @@
+---
+layout:     post
+title:      "MQTTBox 使用"
+date:       2019-10-19
+author:     "cc"
+header-img: "img/tag-bg.jpg"
+catalog: true
+tags:
+    - swift
+---
+## MQTT簡介
+
+IoT(物聯網)最重要的莫過於網路通訊了，而MQTT 是一種物聯網的通訊協定，開發的目的是為了在窄寬帶以及低耗能條件下，傳送與接收處理訊息，採用 Publish／Subscribe 的方式，透過 Broker 做訊息溝通。
+
+發布者：Publisher，不會將訊息直接傳送給訂閱者：Subscriber，而是將訊息分為不同的 主題：Topic，訂閱者只接收已訂閱的主題。
+
+MQTT 即是採用 Publish／Subscribe 模式，其中 Publisher 和 Subscriber 都是用戶端(Client)，Broker 是 伺服器端(Server) 負責轉發 Topic。
+ 
+ >Publish / Subscribe 示意圖
+ 
+<img src="/img/cocoamqtt2/pbs.png" width="100%">
+
+## 利用MQTTBOX測試
+
+在Chrome瀏覽器中下載MQTTBox
+
+><a href="https://chrome.google.com/webstore/detail/mqttbox/kaajoficamnjijhkeomgfljpicifbkaf?hl=zh-TW">MQTTBox載點</a>
+
+下載好後打開MQTTBox，並如下圖進行設定，
+<img src="/img/cocoamqtt2/mqttboxsetting.png" width="100%">
+
+>MQTT Client Name 隨意
+>Protocol 選為mqtt/tcp
+>Host 輸入 broker.mqtt-dashboard.com
+
+儲存後進入下列界面，左邊藍框的是Publisher，右邊橙框的是Subscriber，兩者的Topic都設為: light_sensor_level1，按下Subscriber側的subscribe。
+
+<img src="/img/cocoamqtt2/ps.png" width="100%">
+
+然後在Publisher側的Payload隨意輸入一些資料，並按下Publish
+
+<img src="/img/cocoamqtt2/ps2.png" width="100%">
+
+我們可以看到左側的Subscriber可以接收到Publisher發出的信息。
+
+>下一個教程將建立一個接收 MQTT 訊息的 iOS 的範例。
+
+
+
+    
+    
+    
+

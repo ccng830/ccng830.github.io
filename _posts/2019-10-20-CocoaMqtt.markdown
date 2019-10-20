@@ -65,7 +65,6 @@ tags:
 
 <img src="/img/cocoamqtt/cocoamqtt.png" width="100%">
 
-## 練習
 
 
 

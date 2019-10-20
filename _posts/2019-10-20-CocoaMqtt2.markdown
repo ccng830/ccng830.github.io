@@ -1,0 +1,78 @@
+---
+layout:     post
+title:      "CocoaMqtt 使用教學"
+date:       2019-10-20
+author:     "cc"
+header-img: "img/tag-bg.jpg"
+catalog: true
+tags:
+    - swift
+    - MQTT
+---
+## 目標
+
+>簡單在App中建立一個button以作subscribe topic之用<br/>
+>同時建立一個Label以顯示所接收的內容
+
+## CocoaMQTT
+
+完整代碼
+
+    class ViewController: UIViewController {
+
+        @IBOutlet weak var button1: UIButton!
+        @IBOutlet weak var label1: UILabel!
+        var mqtt: CocoaMQTT?
+        var subscribeBool = false
+        let topic = "light_sensor_level1"
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setupMQTT()
+        }
+
+        @IBAction func Click(_ sender: UIButton) {
+            if !subscribeBool{
+                subscribeBool = true
+                mqtt?.subscribe(topic)
+                mqtt?.subscribe(topic2)
+            }
+            else{
+                subscribeBool = false
+                mqtt?.unsubscribe(topic)
+                mqtt?.unsubscribe(topic2)
+            }
+            mqtt?.didSubscribeTopic = { mqtt , topic in
+                self.button1.setTitle("Cancel", for: .normal)
+            }
+            mqtt?.didUnsubscribeTopic = { mqtt , topic in
+                self.button1.setTitle("Subscribe", for: .normal)
+                self.label1.text = "tap Subscribe"
+            }
+        }
+
+        func setupMQTT(){
+            let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+            mqtt = CocoaMQTT(clientID: clientID, host: "broker.mqttdashboard.com", port: 1883)
+            mqtt?.autoReconnect = true
+            mqtt?.willMessage = CocoaMQTTWill(topic: "abc", message: "dieout")
+            mqtt?.keepAlive = 60
+            mqtt?.delegate = self as? CocoaMQTTDelegate
+            if let mqttStatus = mqtt?.connect(){
+                print(mqttStatus)
+            }
+            
+            mqtt?.didReceiveMessage = { mqtt, message, id in
+                print("Message received in topic \(message.topic) with payload \(message.string!)")
+                print(self.topic)
+                self.label1.text = message.string!
+            }
+        }
+
+
+
+
+    
+    
+    
+

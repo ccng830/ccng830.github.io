@@ -22,7 +22,7 @@ tags:
 
 點選Label/button，按著control不放，拖動箭頭到右側界面，分別拉出IBOutlet及IBAction。
 
-<img src="/img/cocoamqtt3/uibutton&label2.png" width="100%">
+<img src="/img/cocoamqtt3/uibutton&label2.gif" width="100%">
 
 我們要接收從 MQTTBroker 傳來的資料，首先要建立 CocoaMQTT 的物件實體，並且設定屬性：
 

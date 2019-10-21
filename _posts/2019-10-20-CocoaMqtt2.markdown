@@ -16,13 +16,9 @@ tags:
 
 ## CocoaMQTT 
 
-首先在storyboard中，拉出一個Button及Label。
+首先在storyboard中，拉出一個Button及Label，然後點選Assistant。
 
-<img src="/img/cocoamqtt3/step1.png" width="100%">
-
-如下圖所示，點選Assistant
-
-<img src="/img/cocoamqtt3/step2.png" width="100%">
+<img src="/img/cocoamqtt3/uibutton&label.gif" width="100%">
 
 點選Label/button，按著control不放，拖動箭頭到右側界面
 

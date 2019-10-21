@@ -44,6 +44,7 @@ tags:
 
 雙擊打開Podfile輸入，在use_framework!下一行加入
 
+    use_framework!
     pod 'CocoaMQTT'
 
 <img src="/img/cocoamqtt/pod_cocoamqtt.png" width="100%">

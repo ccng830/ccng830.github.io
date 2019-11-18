@@ -13,7 +13,7 @@ tags:
 >建立一個具有3個Bar Button 的介面<br/>
 >
 
-## 簡易新增Navigation Controllor 以及 Tap Bar Controllor
+## 簡易新增Navigation 及 Tap Bar Controllor
 
 首先在Storyboard中點選中要新增Navigation Controllor 的ViewControllor，按上方的Editor -> Embed in -> Navigation Controllor，就會在ViewControllor前方新增一頁Navigation Controllor。
 

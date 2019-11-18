@@ -1,0 +1,43 @@
+---
+layout:     post
+title:      "GPUImage2在項目中集成"
+date:       2019-11-18 23:55:00
+author:     "cc"
+header-img: "img/tag-bg.jpg"
+catalog: true
+tags:
+    - swift
+    - GPUImage2
+---
+## 概述
+
+GPUImage是一個基於OpenGL ES 2.0的開源的圖像處理庫，作者是布拉德·拉森。GPUImage將OpenGL ES封裝為簡潔的Objective-C或Swift接口，可以用來給圖像，實時相機視頻，電影等添加濾鏡。 在iPhone 4上，簡單的圖像濾鏡在GPU上的執行速度比等效的基於CPU的濾鏡 鏡快100多倍。
+
+> <a href="https://github.com/BradLarson/GPUImage2">下載GPUImage2</a>
+
+## 在項目中集成
+
+1. 下載後並解壓，目錄如下。
+
+<img src="/img/GPUImage2/p1_img1.png" width="100%">
+
+2. 將整個GPUImage2文件夾複製至自己的項目中
+
+3. 接下來在項目Build Phases欄，目標依賴項中添加GPUImage依賴項。
+
+<img src="/img/GPUImage2/p1_img2.png" width="100%">
+
+4. 在下面的Link Binary With Libraries中添加GPUImage。
+
+<img src="/img/GPUImage2/p1_img3.png" width="100%">
+
+5. 點擊左上角的+，選擇新建複製文件階段，在新建的複製文件中將目的地選擇為框架，並在欄目中添加GPUImage.framework。
+
+<img src="/img/GPUImage2/p1_img4.png" width="100%">
+
+6. 如果前面沒有問題的話，就能順利運行(command+R)。
+
+>注意完成上述步驟後，即運行一次後，方能在ViewControllor 頁面中Import GPUImage2，否則會報錯。
+
+<img src="/img/GPUImage2/p1_img5.png" width="100%">
+

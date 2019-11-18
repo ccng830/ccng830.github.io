@@ -11,7 +11,7 @@ tags:
 ---
 ## 概述
 
-GPUImage是一個基於OpenGL ES 2.0的開源的圖像處理庫，作者是布拉德·拉森。GPUImage將OpenGL ES封裝為簡潔的Objective-C或Swift接口，可以用來給圖像，實時相機視頻，電影等添加濾鏡。 在iPhone 4上，簡單的圖像濾鏡在GPU上的執行速度比等效的基於CPU的濾鏡 鏡快100多倍。
+GPUImage是一個基於OpenGL ES 2.0的開源的圖像處理庫，作者是Brad Larson。GPUImage將OpenGL ES封裝為簡潔的Objective-C或Swift接口，可以用來給圖像，實時相機視頻，電影等添加濾鏡。 在iPhone 4上，簡單的圖像濾鏡在GPU上的執行速度比等效的基於CPU的濾鏡 鏡快100多倍。
 
 > <a href="https://github.com/BradLarson/GPUImage2">下載GPUImage2</a>
 

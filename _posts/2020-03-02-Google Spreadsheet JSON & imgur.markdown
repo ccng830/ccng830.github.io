@@ -21,14 +21,14 @@ tags:
 ><a href="https://docs.google.com/spreadsheets/u/0/">Google Spreadsheet</a>
 
 按左下角，新增Spreadsheet
-<img src="/img/googleJson/img1.png" width="100%">
+<img src="/img/googleJson/img1.png" width="50%">
 
 輸入如圖中的資料，圖片可透過免費的 imgur作上傳，上傳後copy圖片的網址。
 ><a href="https://imgur.com/">Imgur</a>
 <img src="/img/googleJson/img2.png" width="100%">
 
 然後如圖按檔案 --> 發佈到網絡
-<img src="/img/googleJson/img3.png" width="100%">
+<img src="/img/googleJson/img3.png" width="50%">
 ## 取得 spreadsheet 的 id
 
 編輯 Spreadsheet 時，先複製它的網址，/d/ 後的字串是 Spreadsheet 的 id。

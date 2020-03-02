@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "利用Google Spreadsheet JSON & Imgur 開發App (2)"
-date:       2020-03-02
+date:       2020-03-03
 author:     "cc"
 header-img: "img/tag-bg.jpg"
 catalog: true
@@ -11,7 +11,7 @@ tags:
 ## 簡介
 
 開發前我們先觀看一下成品，
-<img src="/img/googleJson2/1.gif" width="100%">
+<img src="/img/googleJson2/1.gif" width="60%">
 
 可以看到該App實際上就是一個TableView，內裡的Cell顯示的資料為上一節中所抓取的寵物小精靈資料。
 

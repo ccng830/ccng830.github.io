@@ -111,8 +111,21 @@ pod 'SDWebImage', :modular_headers => true
 
 import SDWebImage 是使用第三方插件，使用該插件可以簡單地透過URL抓取圖片。
 
+        import SDWebImage
+
+在class ViewController: UIViewController後面加上委任需要的協定 UITableViewDelegate, UITableViewDataSource，加入後系統會自動偵錯，如下圖，只要按下fix便會自動添加兩個func，後面會詳細解釋。
+
+        class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+            ...省略
+
+<img src="/img/googleJson2/tableview.png" width="100%">
+
 pokeDetail及url兩個Array是用來儲存資料，拉出tableView的IBOutlet。
 
+        var pokeDetail: [String] = []
+        var url = [String]()
+        @IBOutlet weak var myTableView: UITableView!
+        
 下面是tableView 的Rows數目，因些我們返回pokeDetail的個數作其Rows的數目。
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -130,6 +143,10 @@ pokeDetail及url兩個Array是用來儲存資料，拉出tableView的IBOutlet。
     }
 
 定義了兩個結構，分別為PokeResults及Poke。為什麼要定義兩個結構，原因是由於上一節所得到的JSON（如下圖），內裡包含了rows，而rows是一個字串，內裡又包含了num，name，property，image等，因此為了對應該JSON的格式就需要對應定義出兩個struct，第一個struct(PokeResults)之後用來抓取JSON的rows，而第二個struct(Poke)則是抓取每個rows中的元素(num, name...)。
+
+並且注意，結構宣告的型別必需與json的型別相同，才能獲得資料，否則是無法取得資料的。例如你的JSON檔中的，"num"內存取的是Int，但在Swift中宣告了 num: String，在獲取資料是是會失敗的。
+
+另外命名方面，亦需要與JSON檔中的變數命名一樣。例如JSON中是"num"，但Swift中命名為"number"，同樣是會失敗。
 
     struct PokeResults: Codable {
         let rows: [Poke]

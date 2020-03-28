@@ -31,16 +31,16 @@ tags:
 關掉Xcode，打開terminal，cd到專案file 並輸入pod init
 <img src="/img/googleJson2/img1.png" width="100%">
 
-專案File下多出一個Podfile，打開Podfile，輸入pod 'SDWebImage'
+專案File下多出一個Podfile，打開Podfile，輸入
+pod 'SDWebImage', :modular_headers => true
+並且要註釋掉 #use_frameworks!
 <img src="/img/googleJson2/img2.png" width="100%">
 
 再到terminal，輸入pod install，安裝後，打開下圖檔案
 <img src="/img/googleJson2/img3.png" width="100%">
 
 進入info.plist，如下圖加入
-<img src="/img/googleJson2/img4.png" width="100%">
-<img src="/img/googleJson2/img5.png" width="100%">
-<img src="/img/googleJson2/img6.png" width="100%">
+<img src="/img/googleJson2/5.gif" width="100%">
 
     import UIKit
     import SDWebImage
